@@ -1,12 +1,20 @@
 #ifndef __COMPLEX_HPP
 #define __COMPLEX_HPP
 
+#include <cmath>
 #include <iostream>
 
 class Complex{
     public:
-        Complex() {}
-        Complex(float real, float imag): m_real(real), m_imag(imag) {}
+        Complex(): m_real(0.0f), m_imag(0.0f) {}
+        Complex(float x_mod, float y_angle, bool polar = false): m_real(x_mod), m_imag(y_angle){
+            if (polar)
+            {
+                m_real = x_mod*std::cos(y_angle);
+                m_imag = x_mod*std::sin(y_angle);
+            }
+        }
+
         ~Complex() {}
 
         //functions for complex numbers
@@ -17,6 +25,7 @@ class Complex{
         Complex operator+(const Complex& other) const;
         Complex operator-(const Complex& other) const;
         Complex operator*(const Complex& other) const;
+        Complex operator*(const float skalar) const;
         Complex operator/(const Complex& other) const;
         Complex operator~() const;
         bool operator==(const Complex& other) const;

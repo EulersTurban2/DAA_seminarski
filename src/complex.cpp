@@ -20,6 +20,10 @@ Complex Complex::operator*(const Complex& other ) const {
     return Complex(this->m_real*other.m_real-this->m_imag*other.m_imag,this->m_real*other.m_imag+other.m_real*this->m_imag);
 }
 
+Complex Complex::operator*(const float skalar) const {
+    return Complex(this->m_real*skalar,this->m_imag*skalar);
+}
+
 Complex Complex::operator/(const Complex& other ) const {
     return (*this)*(~other)*(Complex(1/pow(other.module(),2),0));
 }
