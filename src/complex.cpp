@@ -8,6 +8,16 @@ float Complex::module() const
     return std::sqrt(this->m_real*this->m_real + this->m_imag*this->m_imag);
 }
 
+float Complex::real() const
+{
+    return m_real;
+}
+
+float Complex::imag() const
+{
+    return m_imag;
+}
+
 Complex Complex::operator+(const Complex& other ) const {
     return Complex(other.m_real+this->m_real,other.m_imag+this->m_imag);
 }
@@ -47,7 +57,7 @@ std::istream &operator>>(std::istream &in, Complex &obj)
 
 Complex round_complex(Complex c)
 {
-    float _base = 100000.0f;
+    float _base = 10000.0f;
     c.m_imag = roundf64(c.m_imag*_base)/_base;
     c.m_real = roundf64(c.m_real*_base)/_base;
     return c;

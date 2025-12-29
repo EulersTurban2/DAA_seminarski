@@ -3,7 +3,6 @@
 
 #include "matrix.hpp"
 
-
 void Matrix::add_zero_padding(const int exp_rows, const int exp_cols){
     int curr_rows = m_elems.size();
     int curr_cols = m_elems[0].size();
@@ -188,4 +187,65 @@ Matrix flipAxes(const Matrix &mat)
         tmp.push_back(tmp2);
     }
     return Matrix(tmp);
+}
+
+float retBigReal(const Matrix &mat)
+{
+    float ret = mat.m_elems[0][0].real();
+    for (int i = 0; i < mat.no_rows; i++)
+    {
+        for (int j = 0; j < mat.no_cols; j++)
+        {
+            float tmp = mat.m_elems[i][j].real();
+            if (tmp - ret > 0)
+            {
+                ret = tmp;
+            }
+        }
+    }
+    return ret;
+}
+
+void addBox(Matrix &mat, int x, int y, int width, int height)
+{
+    for (int i = y; i < y+width; i++)
+    {
+        mat.m_elems[x][i] = Complex(1.0f,0.0f);
+        mat.m_elems[x+height-1][i] = Complex(1.0f,0.0f);
+    }
+    for (int j = x; j < x+height; j++)
+    {
+        mat.m_elems[j][y] = Complex(1.0f,0.0f);
+        mat.m_elems[j][y+width-1] = Complex(1.0f,0.0f);
+    }
+    
+}
+
+Matrix thresholdMap(const Matrix &base, const Matrix &spatialDomain)
+{
+    int w1 = base.getNoCols();
+    int h1 = base.getNoRows();
+
+    int w2 = spatialDomain.getNoCols();
+    int h2 = spatialDomain.getNoRows();
+
+    int rest_width = w1-w2+1;
+    int rest_height = h1-h2+1;
+
+    float biggestReal = retBigReal(spatialDomain);
+
+    Matrix returner = Matrix(h1,w1);
+
+    for (int i = 0; i < h2; i++)
+    {
+        for (int j = 0; j < w2; j++)
+        {
+            if (spatialDomain.m_elems[i][j].real() - base.threshold_factor*biggestReal > 0)
+            {
+                addBox(returner,i,j,rest_width,rest_height);
+            }   
+        }
+        
+    }
+    return returner;
 }

@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <cassert>
+
 #include "complex.hpp"
 
 class Matrix{
@@ -53,12 +54,16 @@ public:
     friend std::ostream& operator<<(std::ostream& out,const Matrix& obj);
     friend std::istream& operator>>(std::istream& in, Matrix& obj);
 
+    friend void addBox(Matrix& mat,int i,int j,int width, int height);
+    friend Matrix thresholdMap(const Matrix& mat,const Matrix& spatial);
     friend Matrix pointWise(const Matrix& mat1, const Matrix& mat2);
     friend Matrix flipAxes(const Matrix& mat);
+    friend float retBigReal(const Matrix& mat);
 
 private:
     std::vector<std::vector<Complex>> m_elems;
     int no_rows, no_cols;
+    float threshold_factor = 0.90f;
 
 };
 

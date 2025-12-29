@@ -3,6 +3,7 @@
 #include "utils.hpp"
 #include "matrix.hpp"
 #include "complex.hpp"
+
 #include "convolution.hpp"
 
 int main(int argc,char** argv){
@@ -32,7 +33,9 @@ int main(int argc,char** argv){
     Matrix mat2 = Matrix(test2);
 
     Matrix res = getSpatialDomainResponseMap(mat2,mat);
-
     std::cout << res << std::endl;
+    std::cout << std::endl;
+    Matrix threshold_map = thresholdMap(mat2,res);
+    std::cout << threshold_map << std::endl;
     return 0;
 }

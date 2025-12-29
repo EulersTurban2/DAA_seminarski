@@ -2,6 +2,7 @@
 #define __UTILS_HPP
 
 #include <vector>
+#include <climits>
 
 #include "complex.hpp"
 #include "matrix.hpp"
@@ -24,6 +25,7 @@ typedef std::vector<Complex> ComplexVector; // omogucava jezgrovitiji zapis
         tmp *= base;
     return tmp;
  }
+
 
 
 /**

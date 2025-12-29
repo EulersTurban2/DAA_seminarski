@@ -20,6 +20,8 @@ class Complex{
         //functions for complex numbers
         float module() const;
         float angle() const;
+        float real() const;
+        float imag() const;
 
         // operators
         Complex operator+(const Complex& other) const;
