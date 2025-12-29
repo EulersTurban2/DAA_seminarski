@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <cassert>
 #include "complex.hpp"
 
 class Matrix{
@@ -36,14 +37,17 @@ public:
     void add_zero_padding(const int exp_rows, const int exp_cols);
     bool check_dimensions(Matrix& other);
 
+    std::vector<Complex> getIthColumn(const int i) const;
+    std::vector<Complex> getIthRow(const int i) const;
+
     //operators
     Matrix operator+(const Matrix& other) const;
     Matrix operator*(const Matrix& other) const;
-   
+    
 
-    std::ostream& operator<<(std::ostream& out) const;
+    friend std::ostream& operator<<(std::ostream& out,const Matrix& obj);
 
-    std::istream& operator>>(std::istream& in);
+    friend std::istream& operator>>(std::istream& in, Matrix& obj);
 
 private:
     std::vector<std::vector<Complex>> m_elems;

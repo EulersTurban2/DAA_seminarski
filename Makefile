@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude
 
-SRC = main.cpp ./src/complex.cpp
+SRC = main.cpp ./src/complex.cpp ./src/matrix.cpp
 OBJ = $(SRC:.cpp=.o)
 
 TARGET = test
