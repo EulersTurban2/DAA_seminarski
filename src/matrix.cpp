@@ -32,6 +32,11 @@ int Matrix::getNoCols() const
     return no_cols;
 }
 
+std::vector<std::vector<Complex>> Matrix::getElems() const
+{
+    return this->m_elems;
+}
+
 std::vector<Complex> Matrix::getIthColumn(const int i) const
 {
     assert(i < no_cols);

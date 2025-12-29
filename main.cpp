@@ -1,4 +1,5 @@
 #include <iostream>
+#include <opencv4/opencv2/opencv.hpp>
 
 #include "utils.hpp"
 #include "matrix.hpp"
@@ -20,7 +21,6 @@ int main(int argc,char** argv){
     {
         test.push_back(a);
     }
-
 
     std::vector<ComplexVector> test2;
     for (int i = 0; i < 16; i++)

@@ -10,6 +10,7 @@
 class Matrix{
 
 public:
+    Matrix(): no_rows(0), no_cols(0) {}
     Matrix(const int rows,const int columns): no_rows(rows), no_cols(columns) {
         m_elems.resize(rows);
         for (int i = 0; i < rows; i++)
@@ -40,6 +41,7 @@ public:
 
     int getNoRows() const;
     int getNoCols() const;
+    std::vector<std::vector<Complex>> getElems() const;
 
     std::vector<Complex> getIthColumn(const int i) const;
     std::vector<Complex> getIthRow(const int i) const;
