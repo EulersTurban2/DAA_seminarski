@@ -32,9 +32,10 @@ Complex Complex::operator~() const {
     return Complex(this->m_real,-this->m_imag);
 }
 
+
 std::ostream &operator<<(std::ostream &out, const Complex &obj)
 {
-    out << "Realni dio: " << obj.m_real << "\n" << "Imaginarni dio: " << obj.m_imag << "\n";
+    out << obj.m_real << " + " << obj.m_imag << "i";
     return out;
 }
 
