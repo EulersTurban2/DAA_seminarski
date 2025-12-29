@@ -29,6 +29,7 @@ int main(int argc,char** argv){
     Matrix mat = Matrix(test);
     std::cout << mat << std::endl;
     std::cout << std::endl;
+    mat.add_zero_padding(4,4);
     Matrix mat2 = ifft2d(fft2d(mat));
     std::cout << mat2 << std::endl;
     return 0;

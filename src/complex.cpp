@@ -47,7 +47,8 @@ std::istream &operator>>(std::istream &in, Complex &obj)
 
 Complex round_complex(Complex c)
 {
-    c.m_imag = roundf64(c.m_imag*100.0)/100.0;
-    c.m_real = roundf64(c.m_real*100.0)/100.0;
+    float _base = 100000.0f;
+    c.m_imag = roundf64(c.m_imag*_base)/_base;
+    c.m_real = roundf64(c.m_real*_base)/_base;
     return c;
 }

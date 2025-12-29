@@ -142,3 +142,18 @@ std::istream &operator>>(std::istream &in, Matrix& obj)
     obj.no_cols = cols;
     return in;
 }
+
+Matrix pointWise(const Matrix &mat1, const Matrix &mat2)
+{
+    std::vector<std::vector<Complex>> tmp;
+    for (int i = 0; i < mat1.no_rows; i++)
+    {
+        std::vector<Complex> tmp2;
+        for (int j = 0; j < mat1.no_cols; j++)
+        {
+            tmp2.push_back(mat1.m_elems[i][j]*mat2.m_elems[i][j]);
+        }
+        tmp.push_back(tmp2);
+    }
+    return Matrix(tmp);
+}

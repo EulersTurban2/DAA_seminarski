@@ -49,8 +49,9 @@ public:
     Matrix operator~() const;
 
     friend std::ostream& operator<<(std::ostream& out,const Matrix& obj);
-
     friend std::istream& operator>>(std::istream& in, Matrix& obj);
+
+    friend Matrix pointWise(const Matrix& mat1, const Matrix& mat2);
 
 private:
     std::vector<std::vector<Complex>> m_elems;

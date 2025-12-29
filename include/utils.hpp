@@ -15,6 +15,18 @@
 typedef std::vector<Complex> ComplexVector; // omogucava jezgrovitiji zapis
 
 /**
+ * Pomocne funkcije
+ */
+ 
+ unsigned getNearestPower(int n, int base){
+    unsigned tmp = 1;
+    while(tmp <= n)
+        tmp *= base;
+    return tmp;
+ }
+
+
+/**
  * 1D FFT!
  */
 
@@ -35,8 +47,8 @@ void fft(const ComplexVector& a, int start_a,const ComplexVector& w, ComplexVect
         Complex r1 = rezultat[start_rezultat+k];
         Complex r2 = rezultat[start_rezultat+(k+n/2)];
 
-        rezultat[start_rezultat+k] = r1 + w[k*korak]*r2;
-        rezultat[start_rezultat+(k+n/2)] = r1 - w[k*korak]*r2;
+        rezultat[start_rezultat+k] = round_complex(r1 + w[k*korak]*r2);
+        rezultat[start_rezultat+(k+n/2)] = round_complex(r1 - w[k*korak]*r2);
     }   
 }
 
