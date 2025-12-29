@@ -110,7 +110,6 @@ ComplexVector ifft(const ComplexVector& a){
     // First we do the rows
     int rows = mat.getNoRows();
     int cols = mat.getNoCols();
-
     std::vector<ComplexVector> tmp;
     for (int i = 0; i < rows; i++)
     {

@@ -43,6 +43,8 @@ public:
     std::vector<Complex> getIthColumn(const int i) const;
     std::vector<Complex> getIthRow(const int i) const;
 
+    Matrix subMatrix(int start_x,int end_x, int start_y, int end_y);
+
     //operators
     Matrix operator+(const Matrix& other) const;
     Matrix operator*(const Matrix& other) const;
@@ -52,6 +54,7 @@ public:
     friend std::istream& operator>>(std::istream& in, Matrix& obj);
 
     friend Matrix pointWise(const Matrix& mat1, const Matrix& mat2);
+    friend Matrix flipAxes(const Matrix& mat);
 
 private:
     std::vector<std::vector<Complex>> m_elems;

@@ -50,6 +50,21 @@ std::vector<Complex> Matrix::getIthRow(const int i) const
     return m_elems[i];
 }
 
+Matrix Matrix::subMatrix(int start_x, int end_x, int start_y, int end_y)
+{
+    std::vector<std::vector<Complex>> tmp;
+    for (int i = start_x; i < end_x; i++)
+    {
+        std::vector<Complex> tmp2;
+        for (int j = start_y; j < end_y; j++)
+        {
+            tmp2.push_back(m_elems[i][j]);
+        }
+        tmp.push_back(tmp2);
+    }
+    return Matrix(tmp);
+}
+
 Matrix Matrix::operator+(const Matrix& other) const{
     assert(this->no_rows == other.no_rows && this->no_cols == other.no_cols);
     std::vector<std::vector<Complex>> tmp;
@@ -152,6 +167,23 @@ Matrix pointWise(const Matrix &mat1, const Matrix &mat2)
         for (int j = 0; j < mat1.no_cols; j++)
         {
             tmp2.push_back(mat1.m_elems[i][j]*mat2.m_elems[i][j]);
+        }
+        tmp.push_back(tmp2);
+    }
+    return Matrix(tmp);
+}
+
+Matrix flipAxes(const Matrix &mat)
+{
+    int h = mat.getNoRows();
+    int w = mat.getNoCols();
+    std::vector<std::vector<Complex>> tmp;
+    for (int i = 0; i < h; i++)
+    {
+        std::vector<Complex> tmp2;
+        for (int j = 0;j < w; j++)
+        {
+            tmp2.push_back(mat.m_elems[h-1-i][w-1-j]);
         }
         tmp.push_back(tmp2);
     }

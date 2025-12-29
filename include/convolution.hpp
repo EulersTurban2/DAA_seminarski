@@ -19,16 +19,18 @@ void padd_in_the_matrices(Matrix& mat1, Matrix& mat2){
 
     mat1.add_zero_padding(pow2n1-mat1_rows,pow2n2-mat1_cols);
     mat2.add_zero_padding(pow2n1-mat2_rows,pow2n2-mat2_cols);
+
 }
 
-Matrix& getSpatialDomainResponseMap(Matrix& base, Matrix& templ) {
-    padd_in_the_matrices(base,templ);
-    Matrix fft_base = fft2d(base);
-    Matrix fft_templ = fft2d(templ);
+Matrix getSpatialDomainResponseMap(Matrix& base, Matrix& templ) {
+    Matrix base_copy = base;
+    Matrix templ_copy = flipAxes(templ);
+    padd_in_the_matrices(base_copy,templ_copy);
+    Matrix fft_base = fft2d(base_copy);
+    Matrix fft_templ = fft2d(templ_copy);
     Matrix fft_r = pointWise(fft_base,fft_templ);
     Matrix spatialDomain = ifft2d(fft_r);
-    
-    return spatialDomain;
+    return spatialDomain.subMatrix(0,base.getNoRows()-templ.getNoRows()+1,0,base.getNoCols()-templ.getNoCols()+1);
 }
 
 #endif
