@@ -2,6 +2,7 @@
 #define __MATRIX_HPP
 
 #include <vector>
+#include <iostream>
 #include "complex.hpp"
 
 class Matrix{
@@ -36,9 +37,14 @@ public:
     bool check_dimensions(Matrix& other);
 
     //operators
-    Matrix operator+(const Matrix& other);
-    Matrix operator*(const Matrix& other);
+    Matrix operator+(const Matrix& other) const;
+    Matrix operator*(const Matrix& other) const;
    
+
+    std::ostream& operator<<(std::ostream& out) const;
+
+    std::istream& operator>>(std::istream& in);
+
 private:
     std::vector<std::vector<Complex>> m_elems;
     int no_rows, no_cols;

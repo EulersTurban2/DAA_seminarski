@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <algorithm>
 
 #include "matrix.hpp"
 
@@ -20,7 +21,7 @@ bool Matrix::check_dimensions(Matrix& other){
     return false;
 }
 
-Matrix Matrix::operator+(const Matrix& other) {
+Matrix Matrix::operator+(const Matrix& other) const{
     assert(this->no_rows == other.no_rows && this->no_cols == other.no_cols);
     std::vector<std::vector<Complex>> tmp;
     for (int i = 0; i < no_rows; i++)
@@ -35,7 +36,7 @@ Matrix Matrix::operator+(const Matrix& other) {
     return Matrix(tmp);
 }
 
-Matrix Matrix::operator*(const Matrix& other){
+Matrix Matrix::operator*(const Matrix& other) const{
     assert(this->no_cols == other.no_rows);
     std::vector<std::vector<Complex>> tmp;
     for (int i = 0; i < no_rows; i++)
@@ -53,4 +54,48 @@ Matrix Matrix::operator*(const Matrix& other){
         tmp.push_back(tmp2);
     }
     return Matrix(tmp);
+}
+
+std::ostream &Matrix::operator<<(std::ostream &out) const
+{
+    for (int i = 0; i < no_rows; i++)
+    {
+        for (int j = 0; j < no_cols; j++)
+        {
+            out << m_elems[i][j] << " ";
+        }
+        out << "\n";
+    }
+    return out;
+}
+
+std::istream &Matrix::operator>>(std::istream &in)
+{
+    // first we enter the dimensions
+    int rows, cols;
+    in >> rows >> cols;
+    std::vector<std::vector<Complex>> tmp;
+    for (int i = 0; i < rows; i++)
+    {
+        std::vector<Complex> tmp2;
+        for (int j = 0; j < cols; j++)
+        {
+            Complex tmp3;
+            in >> tmp3;
+            tmp2.push_back(tmp3);
+        }
+        tmp.push_back(tmp2);
+    }
+    m_elems.resize(rows);
+    for (int i = 0; i < cols; i++)
+    {
+        m_elems[i].resize(cols);
+        for (int j = 0; j < cols; j++)
+        {
+            m_elems[i][j] = tmp[i][j];
+        }
+    }
+    this->no_rows = rows;
+    this->no_cols = cols;
+    return in;
 }
