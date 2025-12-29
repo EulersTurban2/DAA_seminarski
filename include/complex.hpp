@@ -30,9 +30,11 @@ class Complex{
         Complex operator~() const;
         bool operator==(const Complex& other) const;
 
-        friend std::ostream& operator<<(std::ostream& out, const Complex &obj);
-        
+        friend std::ostream& operator<<(std::ostream& out, const Complex &obj);        
         friend std::istream& operator>>(std::istream& in, Complex &obj);
+
+        friend Complex round_complex(Complex c);
+
     private:
         float m_real, m_imag;
 };

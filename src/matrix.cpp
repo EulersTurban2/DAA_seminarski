@@ -23,6 +23,16 @@ bool Matrix::check_dimensions(Matrix& other){
     return false;
 }
 
+int Matrix::getNoRows() const
+{
+    return no_rows;
+}
+
+int Matrix::getNoCols() const
+{
+    return no_cols;
+}
+
 std::vector<Complex> Matrix::getIthColumn(const int i) const
 {
     assert(i < no_cols);
@@ -69,6 +79,21 @@ Matrix Matrix::operator*(const Matrix& other) const{
                 sum = sum + m_elems[i][k]*other.m_elems[k][j];
             }
             tmp2.push_back(sum);
+        }
+        tmp.push_back(tmp2);
+    }
+    return Matrix(tmp);
+}
+
+Matrix Matrix::operator~() const
+{
+    std::vector<std::vector<Complex>> tmp;
+    for (int i = 0; i < no_cols; i++)
+    {
+        std::vector<Complex> tmp2;
+        for (int j = 0; j < no_rows; j++)
+        {
+            tmp2.push_back(m_elems[j][i]);
         }
         tmp.push_back(tmp2);
     }

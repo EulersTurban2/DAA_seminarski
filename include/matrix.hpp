@@ -37,13 +37,16 @@ public:
     void add_zero_padding(const int exp_rows, const int exp_cols);
     bool check_dimensions(Matrix& other);
 
+    int getNoRows() const;
+    int getNoCols() const;
+
     std::vector<Complex> getIthColumn(const int i) const;
     std::vector<Complex> getIthRow(const int i) const;
 
     //operators
     Matrix operator+(const Matrix& other) const;
     Matrix operator*(const Matrix& other) const;
-    
+    Matrix operator~() const;
 
     friend std::ostream& operator<<(std::ostream& out,const Matrix& obj);
 

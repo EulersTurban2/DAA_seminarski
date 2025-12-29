@@ -44,3 +44,10 @@ std::istream &operator>>(std::istream &in, Complex &obj)
     in >> obj.m_real >> obj.m_imag;
     return in;
 }
+
+Complex round_complex(Complex c)
+{
+    c.m_imag = roundf64(c.m_imag*100.0)/100.0;
+    c.m_real = roundf64(c.m_real*100.0)/100.0;
+    return c;
+}
