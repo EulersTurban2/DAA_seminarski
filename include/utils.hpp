@@ -5,7 +5,6 @@
 #include <climits>
 
 #include "complex.hpp"
-#include "matrix.hpp"
 
 /**
  * Ovaj header file sadrzi sve potrebne funckije za funkcionisanje fft-a
@@ -34,7 +33,6 @@ typedef std::vector<Complex> ComplexVector; // omogucava jezgrovitiji zapis
 
 void fft(const ComplexVector& a, int start_a,const ComplexVector& w, ComplexVector& rezultat, int start_rezultat, int korak){
     int n = a.size()/korak;
-
     if (n == 1)
     {
         rezultat[start_rezultat] = a[start_a];
@@ -77,60 +75,5 @@ ComplexVector ifft(const ComplexVector& a){
 }
 
 
-/**
- * 2D FFT
- */
-
-
- Matrix fft2d(const Matrix& mat) {
-    // First we do the rows
-    int rows = mat.getNoRows();
-    int cols = mat.getNoCols();
-
-    std::vector<ComplexVector> tmp;
-    for (int i = 0; i < rows; i++)
-    {
-        ComplexVector ith_row = mat.getIthRow(i);
-        ComplexVector fft_ith_row = fft(ith_row);
-        tmp.push_back(fft_ith_row);
-    }
-    Matrix tmp_mat = Matrix(tmp);
-    tmp.clear();
-    tmp.reserve(cols);
-    // Now we do the cols
-    for (int i = 0; i < cols; i++)
-    {
-        ComplexVector ith_col = tmp_mat.getIthColumn(i);
-        ComplexVector fft_ith_col = fft(ith_col);
-        tmp.push_back(fft_ith_col);
-    }
-    Matrix tmp_mat2 = ~Matrix(tmp);
-    return tmp_mat2;
- }
-
- Matrix ifft2d(const Matrix& mat){
-    // First we do the rows
-    int rows = mat.getNoRows();
-    int cols = mat.getNoCols();
-    std::vector<ComplexVector> tmp;
-    for (int i = 0; i < rows; i++)
-    {
-        ComplexVector ith_row = mat.getIthRow(i);
-        ComplexVector fft_ith_row = ifft(ith_row);
-        tmp.push_back(fft_ith_row);
-    }
-    Matrix tmp_mat = Matrix(tmp);
-    tmp.clear();
-    tmp.reserve(cols);
-    // Now we do the cols
-    for (int i = 0; i < cols; i++)
-    {
-        ComplexVector ith_col = tmp_mat.getIthColumn(i);
-        ComplexVector fft_ith_col = ifft(ith_col);
-        tmp.push_back(fft_ith_col);
-    }
-    Matrix tmp_mat2 = ~Matrix(tmp);
-    return tmp_mat2;
- }
 
 #endif

@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude `pkg-config --cflags opencv4`
 LDFLAGS = `pkg-config --libs opencv4`
 
-SRC = main.cpp ./src/complex.cpp ./src/matrix.cpp ./src/image.cpp
+SRC = main.cpp ./src/complex.cpp ./src/matrix.cpp
 OBJ = $(SRC:.cpp=.o)
 
 TARGET = test
