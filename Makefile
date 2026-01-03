@@ -1,7 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Iinclude `pkg-config --cflags opencv4`
+LDFLAGS = `pkg-config --libs opencv4`
 
-SRC = main.cpp ./src/complex.cpp ./src/matrix.cpp
+SRC = main.cpp ./src/complex.cpp ./src/matrix.cpp ./src/image.cpp
 OBJ = $(SRC:.cpp=.o)
 
 TARGET = test
@@ -9,7 +10,7 @@ TARGET = test
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $(TARGET)
+	$(CXX) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

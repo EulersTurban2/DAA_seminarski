@@ -211,46 +211,4 @@ float retBigReal(const Matrix &mat)
     return ret;
 }
 
-void addBox(Matrix &mat, int x, int y, int width, int height)
-{
-    for (int i = y; i < y+width; i++)
-    {
-        mat.m_elems[x][i] = Complex(1.0f,0.0f);
-        mat.m_elems[x+height-1][i] = Complex(1.0f,0.0f);
-    }
-    for (int j = x; j < x+height; j++)
-    {
-        mat.m_elems[j][y] = Complex(1.0f,0.0f);
-        mat.m_elems[j][y+width-1] = Complex(1.0f,0.0f);
-    }
-    
-}
 
-Matrix thresholdMap(const Matrix &base, const Matrix &spatialDomain)
-{
-    int w1 = base.getNoCols();
-    int h1 = base.getNoRows();
-
-    int w2 = spatialDomain.getNoCols();
-    int h2 = spatialDomain.getNoRows();
-
-    int rest_width = w1-w2+1;
-    int rest_height = h1-h2+1;
-
-    float biggestReal = retBigReal(spatialDomain);
-
-    Matrix returner = Matrix(h1,w1);
-
-    for (int i = 0; i < h2; i++)
-    {
-        for (int j = 0; j < w2; j++)
-        {
-            if (spatialDomain.m_elems[i][j].real() - base.threshold_factor*biggestReal > 0)
-            {
-                addBox(returner,i,j,rest_width,rest_height);
-            }   
-        }
-        
-    }
-    return returner;
-}
