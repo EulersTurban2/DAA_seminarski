@@ -1,9 +1,9 @@
-# Uklanjanje šuma koristeći algoritam Brze Furijeove transofrmacije (FFT)
+# Redukovanje šuma koristeći algoritam Brze Furijeove transofrmacije (FFT)
 
 ## Pregled
 
 Ovaj seminarski ima za cilj da prikaže primjenu algoritma brze furijeove transformacije u polju obrade zvuka, 
-tačnije uklanjanje šuma iz samog zvuka. Implementacija čitave protočne obrade je odrađena u C++ i sadrži:
+tačnije redukovanja šuma iz samog zvuka. Implementacija čitave protočne obrade je odrađena u C++ i sadrži:
 
 - Potpunu implementaciju artimetike kompleksnih brojeva
 - Algoritam brze Furijeove transformacije
