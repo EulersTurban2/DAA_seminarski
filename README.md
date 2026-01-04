@@ -29,9 +29,9 @@ tačnije uklanjanje šuma iz samog zvuka. Implementacija čitave protočne obrad
 ├── main.cpp
 ├── Makefile
 ├── README.md
-└── src
-    └── complex.cpp
-
+├── src
+│   └── complex.cpp
+└── DAA__seminarski.pdf # opis
 
 ```
 
