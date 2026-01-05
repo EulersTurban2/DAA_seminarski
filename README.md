@@ -1,4 +1,4 @@
-# Redukovanje šuma koristeći algoritam Brze Furijeove transofrmacije (FFT)
+# Redukovanje šuma koristeći algoritam Brze Furijeove transformacije (FFT)
 
 ## Pregled
 
