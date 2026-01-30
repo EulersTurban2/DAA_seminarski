@@ -8,7 +8,10 @@ tačnije redukovanja šuma iz samog zvuka. Implementacija čitave protočne obra
 - Potpunu implementaciju artimetike kompleksnih brojeva
 - Algoritam brze Furijeove transformacije
 - Kratkoročna Furijeova transformacija:
-    - Hahn prozori
+    - Hann prozor
+    - Hamming prozor
+    - Welch prozor
+    - Parzen prozor
 - Spektralno odstranjenje šuma 
 - Čitač i pisač WAV (16-bit) fajlova 
 - Konverzija u mono audio
