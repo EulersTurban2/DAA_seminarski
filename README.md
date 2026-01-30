@@ -20,21 +20,34 @@ tačnije redukovanja šuma iz samog zvuka. Implementacija čitave protočne obra
 ## Struktura projekta
 
 ```
+├── DAA___seminarski.pdf            # opis samog seminarskog
 ├── data
-│   ├── cleaned         # Očišćenji fajlovi 
-│   ├── sample          # Fajlovi sa šumom
-│   └── src             # Originalni fajlovi, bez šuma
+│   ├── cleaned
+│   │   ├── impulsive
+│   │   ├── normal
+│   │   └── pink
+│   ├── rusija_mono.wav
+│   ├── sample
+│   │   ├── impulsive
+│   │   ├── normal
+│   │   └── pink
+│   └── src
+│       └── rusija.wav
 ├── include
-│   ├── audio.hpp       # implementacija čitača i pisača, kao i sam algoritam STFT
-│   ├── complex.hpp     # implementacija komplkesnih brojeva
-│   ├── utils.hpp       # implementacija FFT
-│   └── wavheader.hpp   # strukture u kojima se upisuju podaci iz WAV fajlova
-├── main.cpp
-├── Makefile
+│   ├── audio.hpp                   # header za rad sa WAV fajlovima
+│   ├── complex.hpp                 # kompleksna aritmetika
+│   ├── remove.hpp                  # algoritam STFT
+│   ├── types.hpp                   # enum tipovi
+│   ├── utils.hpp                   # implementacija FFT-a
+│   ├── wavheader.hpp               # pomocne strukture za cuvanje WAV informacija
+│   └── wfunctions.hpp              # prozorne funkcije
+├── jupyter_spectrograms
+│   └── spectral_noise.ipynb        # spektrogramska analiza svih audio fajlova
+├── main.cpp                        # tlo za testiranje :)
+├── Makefile                        
 ├── README.md
-├── src
-│   └── complex.cpp
-└── DAA__seminarski.pdf # opis
+└── src
+    └── complex.cpp
 
 ```
 
